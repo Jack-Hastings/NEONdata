@@ -56,22 +56,33 @@ lai.files <- jsonlite::fromJSON(content(lai.BART.2019, as = 'text'))
 # this list of files is very long, just look at the first ten
 head(lai.files$data$files$name, 15 )
 
+#####
+# build a function that makes and pulls from list for downloading
+####
 
-tossX <- list(lai.files$data$files)
-# will also need URL
-# I think make a makes a list and unpacks the list for url and name, etc.
+# a manageable test case. 
+files.short <- lai.files$data$files[1:10,]
 
-lai.files.list <- lai.files$data$files$name[grep('Error', lai.files$data$files$name, invert = T)]
-for (file.X in 1:length(lai.files.list)){
-  print(file.X)
- 
+
+# download(lidar.files$data$files$url[grep('320000_4880000', 
+#                                          lidar.files$data$files$name)],
+#          paste(getwd(), '/BART_pointcloud.laz', sep = ''), mode = 'wb')
+
+
+
+## This does not yet work right -- have to fix the iteration
+func <- function(files = files.short, path = getwd(), folder ){
   
+  files.list <- list(files)
+  for (file in files.list){
+    f.name <- file$name
+    f.url <- file$url
+    # download(url = f.url,
+    #          paste(path, folder, f.name, sep = '/'), mode = 'wb')
+    print(f.name)
+    print('break')
+  }
 }
 
-#download LAI files 
-
-# download(lai.files$data$files$url[grep('320000_4880000', 
-#                                        lai.files$data$files$name)],
-#          paste(getwd(), '/BART_lai.laz', sep = ''), mode = 'wb')
-
+func(folder = 'BART_LAI_2019' )
 
