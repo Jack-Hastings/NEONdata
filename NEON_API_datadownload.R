@@ -3,7 +3,8 @@
 ## Who: Jack Hastings
 ## When: 2/24/2022
 ## https://www.neonscience.org/resources/learning-hub/tutorials/neon-api-usage
-######################################
+#####################################
+
 
 
 library(httr)
@@ -72,3 +73,5 @@ for (file.X in 1:length(lai.files.list)){
 # download(lai.files$data$files$url[grep('320000_4880000', 
 #                                        lai.files$data$files$name)],
 #          paste(getwd(), '/BART_lai.laz', sep = ''), mode = 'wb')
+
+
